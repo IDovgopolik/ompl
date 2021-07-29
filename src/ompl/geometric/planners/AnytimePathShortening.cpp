@@ -58,6 +58,7 @@
 #include "ompl/geometric/planners/est/ProjEST.h"
 #include "ompl/geometric/planners/rrt/RRT.h"
 #include "ompl/geometric/planners/rrt/RRTConnect.h"
+#include "ompl/geometric/planners/rrt/MIBRRT.h"
 #include "ompl/geometric/planners/rrt/RRTstar.h"
 #include "ompl/geometric/planners/rrt/RRTXstatic.h"
 #include "ompl/geometric/planners/sbl/SBL.h"
@@ -396,6 +397,8 @@ void ompl::geometric::AnytimePathShortening::setPlanners(const std::string &plan
             planners_.push_back(std::make_shared<geometric::RRT>(si_));
         else if (plannerName == "RRTConnect")
             planners_.push_back(std::make_shared<geometric::RRTConnect>(si_));
+        else if (plannerName == "MIBRRT")
+            planners_.push_back(std::make_shared<geometric::MIBRRT>(si_));
         else if (plannerName == "RRTstar")
             planners_.push_back(std::make_shared<geometric::RRTstar>(si_));
         else if (plannerName == "RRTXstatic")
