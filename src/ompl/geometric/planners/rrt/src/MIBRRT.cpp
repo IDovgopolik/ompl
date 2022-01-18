@@ -61,6 +61,7 @@ ompl::geometric::MIBRRT::~MIBRRT()
 
 void ompl::geometric::MIBRRT::setup()
 {
+    std::cout<<"\033[32m MIBRRT setup...\033[0m"<<std::endl;
     Planner::setup();
     tools::SelfConfig sc(si_, getName());
     sc.configurePlannerRange(maxDistance_);
@@ -116,8 +117,6 @@ void ompl::geometric::MIBRRT::clear()
 ompl::geometric::MIBRRT::GrowState ompl::geometric::MIBRRT::growTree(TreeData &tree, TreeGrowingInfo &tgi,
                                                                              Motion *rmotion)
 {
-    OMPL_INFORM("TreeGrows");
-    std::cout<<std::endl<<"TreeGrows"<<std::endl;
    
     /* find closest state in the tree */
     Motion *nmotion = tree->nearest(rmotion);
@@ -190,8 +189,7 @@ ompl::base::PlannerStatus ompl::geometric::MIBRRT::solve(const base::PlannerTerm
 {
     checkValidity();
     auto *goal = dynamic_cast<base::GoalSampleableRegion *>(pdef_->getGoal().get());
-    OMPL_INFORM("Tudududum");
-    std::cout<<std::endl<<"Tudududum"<<std::endl;
+
     if (goal == nullptr)
     {
         OMPL_ERROR("%s: Unknown type of goal", getName().c_str());
@@ -261,8 +259,6 @@ ompl::base::PlannerStatus ompl::geometric::MIBRRT::solve(const base::PlannerTerm
         }
 
         /* sample random state */
-        OMPL_INFORM("Ya vnutri");
-        std::cout<<std::endl<<"Ya vnutri"<<std::endl;
         sampler_->sampleUniform(rstate);
         Motion *start_motion = tree->nearest(rmotion);
         Motion *Goal_motion = otherTree->nearest(rmotion);
@@ -404,8 +400,6 @@ ompl::base::PlannerStatus ompl::geometric::MIBRRT::solve(const base::PlannerTerm
 
     OMPL_INFORM("%s: Created %u states (%u start + %u goal)", getName().c_str(), tStart_->size() + tGoal_->size(),
                 tStart_->size(), tGoal_->size());
-    OMPL_INFORM("Kakoy-to vivod");
-    std::cout<<std::endl<<"Kakoy-to vivod"<<std::endl;
     if (approxsol && !solved)
     {
         /* construct the solution path */

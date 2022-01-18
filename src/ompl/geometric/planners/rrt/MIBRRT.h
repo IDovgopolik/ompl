@@ -57,7 +57,7 @@ namespace ompl
            [[more]](http://msl.cs.uiuc.edu/~lavalle/rrtpubs.html)
         */
 
-        /** \brief RRT-Connect (MIBRRT) */
+        /** \brief MIBRRT (MIBRRT) */
         class MIBRRT : public base::Planner
         {
         public:
